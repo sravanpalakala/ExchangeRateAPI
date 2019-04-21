@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG">
+	<Properties>
+		<Property name="log-path">${sys:catalina.home}/logs</Property>
+	</Properties>
+<Appenders>
+ 		<Console name="Console" target="SYSTEM_OUT">
+        <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+       </Console>
+		<RollingFile name="RollingFile" fileName="${log-path}/wf_web.log"
+		filePattern="${log-path}/wf_web-%d{yyyy-MM-dd}-%i.log" >
+		<PatternLayout>
+				<pattern>%d{dd/MMM/yyyy HH:mm:ss,SSS}- %c{1}: %m%n</pattern>
+		</PatternLayout>
+		<!-- <CronTriggeringPolicy schedule="0 0 0 * * ?"/>-->
+		 <TimeBasedTriggeringPolicy />
+		</RollingFile>
+</Appenders>
+<Loggers>
+		<logger name="org.hibernate" level="info" additivity="false">
+		  <AppenderRef ref="RollingFile" />
+		  </logger>
+		<logger name="org.hibernate.SQL" level="debug" additivity="false">
+		  <AppenderRef ref="RollingFile" />
+		  </logger>
+		<logger name="com.ifc" level="debug" additivity="false">
+		  <AppenderRef ref="RollingFile" />
+		 </logger>
+		<Root level="debug" additivity="false">
+				<AppenderRef ref="RollingFile"/>
+		</Root> 
+		<!--<root level="DEBUG" additivity="false">
+      		<appender-ref ref="Console" level="DEBUG"/>
+      		<appender-ref ref="RollingFile" level="DEBUG"/>
+      	 </root>   -->
+</Loggers>
+</Configuration>

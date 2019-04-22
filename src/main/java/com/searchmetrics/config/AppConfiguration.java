@@ -14,7 +14,7 @@ public class AppConfiguration {
     ConfigurableEnvironment env; 
 	
 	
-	// commented  added line
+	// commented  added line  build now for jenkins
 	
 	
 	@Bean
